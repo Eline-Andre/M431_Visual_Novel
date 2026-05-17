@@ -1,8 +1,6 @@
-Visual Novel, projet CFPT
-=========================
+# Visual Novel, projet CFPT
 
 Auteurs: Nhi, Eline, Lena
 
-Installation
--------------
+## Installation
 
