@@ -1,5 +1,6 @@
 let day;
 let scene;
+let nbScene;
 let room;
 let dialogue;
 let listDialogues;
@@ -7,20 +8,29 @@ let activeDialogues = false;
 let defaultText =  "Il n'y a personne ici...";
 let indices = 0;
 
+/**
+ * initalisation du jeu
+ */
 function init() {
-    day = 4;
+    day = 5;
     scene = 1;
+    nbScene = 1;
+    indices = 2;
     document.getElementById("day").innerHTML = "Jour " + day;
     chooseRoom('Parking')
 
     document.addEventListener('keydown', (e) => {
         if (e.key === ' ') {
-        e.preventDefault(); // ça empêche les actions par défaut quand on tape sur une touche (scroll, etc.)
-        advance();
+            e.preventDefault(); // ça empêche les actions par défaut quand on tape sur une touche (scroll, etc.)
+            advance();
         }
     });
 }
 
+/**
+ * Désactiver tout les boutons lors de dialogues, les réactiver ensuite
+ * @param {regarder si c'est true ou false} state 
+ */
 function toggleButton(state){
     if (state == true) {
         activeDialogues = false;
@@ -29,7 +39,6 @@ function toggleButton(state){
         activeDialogues = true;
         //document.getElementById("game").style.pointer = "pointer";
     }
-    console.log("etat", activeDialogues);
 
     document.getElementById("parking").disabled = !state;
     document.getElementById("entree").disabled = !state;
@@ -43,6 +52,9 @@ function toggleButton(state){
     document.getElementById("terrasse").disabled = !state;
 }
 
+/**
+ * @param {On choisit la chambre} room 
+ */
 function chooseRoom(room) {  
     const res3 = [];
 
@@ -51,14 +63,17 @@ function chooseRoom(room) {
 
     dialogue = 0;
 
+    // recoit les différents dialogues de la scene dans l'ordre
     const res = dialogues.filter((d) => {
         return (d.day == day && d.scene == scene && d.room == room && d.visited == false);
     });
 
+    // Reçoit que les résultats de toutes les scenes en dessus de 100 pour le jour indiqué
     const res2 = dialogues.filter((d) => {
         return (d.day == day && d.scene > 100 && d.room == room && d.visited == false);
     });
 
+    // Ici, on on ne garde les dialogues de la première scène de res2, parce que res2 a pu trouver plusiers scènes
     let dialNb = 0;
     res2.forEach((d) => {
         if (d.dialogue > dialNb) {
@@ -79,6 +94,9 @@ function chooseRoom(room) {
     }
 }
 
+/**
+ * Tester si on est dans la villa ou dehors et activer/désactiver les boutons liés
+ */
 function checkPlaceVisibility() {
     let res = dialogues.filter((d) => {
         return (d.day == day && d.scene == scene && d.dialogue == 1 && d.visited == false);
@@ -97,33 +115,87 @@ function checkPlaceVisibility() {
     }
 }
 
+/**
+ * Aller au prochain dialogue, et désactiver les dialogues déjà eu
+ */
 function changeDialogue() { 
     if (activeDialogues && dialogue < listDialogues.length) {   
         listDialogues[dialogue].visited = true;
-        document.getElementById("text").innerHTML = listDialogues[dialogue++].text;
-        testNewScene ();
         if (listDialogues[dialogue].indice == true) {
             indices++
-        }
+        } 
+        document.getElementById("text").innerHTML = listDialogues[dialogue++].text;
+        testNewScene ();
     }
 }
 
+
+/**
+ * Tester si il s'agit d'une nouvelle scène, et le cas échéant, d'un nouveau jour
+ */
 function testNewScene () {
     if (listDialogues.length == dialogue) {
-        if (scenes[day] == scene && listDialogues.length == dialogue) {
-            day++;
+        if (scenes[day] == nbScene && listDialogues.length == dialogue) {
+            // Nouveau jour
             scene = 1;
+            nbScene = 1;
 
-            document.getElementById("day").innerHTML = "Jour " + day;
+            if (day < 5) {
+                document.getElementById("day").innerHTML = "Jour " + day;
+            }
+
+            day++;
 
             if (day == 6) {
-                //compter les indices
+                resolution();
+            } else if (day == 7) {
+                theEnd();
+            } else {
+                toggleButton(true);
             }
         } else {
+            // Nouvelle scene
             scene++;
+            nbScene++;
             checkPlaceVisibility(); 
+            toggleButton(true);
         }
-        toggleButton(true);
     }
     console.log('day', day)
+}
+
+function resolution() {
+    if (indices < 5) {
+        scene = 3;
+    } else if (indices < 8) {
+        scene = 2;
+    } else {
+        scene = 1;
+    }
+
+    // recoit les différents dialogues de la scene dans l'ordre
+    const res = dialogues.filter((d) => {
+        return (d.day == day && d.scene == scene);
+    });
+
+    dialogue = 0;
+
+    if (res.length > 0) {
+        listDialogues = res;
+        changeDialogue();
+    }
+}
+
+function theEnd() {
+    // recoit les différents dialogues de la scene dans l'ordre
+    const res = dialogues.filter((d) => {
+        return (d.day == day && d.scene == scene);
+    });
+
+    dialogue = 0;
+
+    if (res.length > 0) {
+        listDialogues = res;
+        changeDialogue();
+    }
 }
