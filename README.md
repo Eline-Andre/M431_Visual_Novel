@@ -1,3 +1,5 @@
+- School project, please don't modify without autorisation -
+
 # Visual Novel, projet CFPT
 
 Auteurs: Nhi, Eline, Lena
