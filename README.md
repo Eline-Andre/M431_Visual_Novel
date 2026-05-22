@@ -1,4 +1,4 @@
-- School project, please don't modify without autorisation -
+— School project, please don't modify without autorisation —
 
 # Visual Novel, projet CFPT
 
