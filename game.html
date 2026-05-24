@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visual Novel</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body onload="init()">
+  <div id="test">
+    <div><h2 id="day"></h2></div>
+
+    <div id="house">
+      <button id="parking" onclick="chooseRoom('Parking')">Parking</button>
+      <button id="entree" onclick="chooseRoom('Entrée maison')">Entrée maison</button>
+      <button id="hall" onclick="chooseRoom('Hall')">Hall</button> 
+      <button id="couloir" onclick="chooseRoom('Couloir')">Couloir</button>
+      <button id="salon" onclick="chooseRoom('Salon')">Salon</button>
+      <button id="cuisine" onclick="chooseRoom('Cuisine')">Cuisine</button>
+      <button id="chambre1" onclick="chooseRoom('Chambre 1')">Chambre 1</button>
+      <button id="chambre2" onclick="chooseRoom('Chambre 2')">Chambre 2</button>
+      <button id="chambre3" onclick="chooseRoom('Chambre 3')">Chambre 3</button>
+      <button id="terrasse" onclick="chooseRoom('Terrasse')">Terrasse</button>
+    </div>
+
+    <div id="town">
+      <button id="magasin1" onclick="chooseRoom('Magasin électronique')">Magasin électronique</button>
+      <button id="magasin2" onclick="chooseRoom('Magasin de vêtements')">Magasin de vêtements</button>
+      <button id="restaurant" onclick="chooseRoom('Restaurant')">Restaurant</button>
+    </div>
+  </div>
+
+  <div id="game" onclick="changeDialogue()">
+    <div id="background"></div>
+    <img id="sprite" src="" alt="">
+
+    <div id="dialogue-box">
+      <div id="speaker"></div>
+      <div id="text"></div>
+    </div>
+
+  </div>
+
+  <script src="js/dialogues.js"></script>
+  <script src="js/game.js"></script>
+
+</body>
+</body>
+</html>
