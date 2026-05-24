@@ -7,14 +7,15 @@ let listDialogues;
 let activeDialogues = false;
 let defaultText =  "Il n'y a personne ici...";
 let indices = 0;
+let choice;
 
 /**
  * initalisation du jeu
  */
 function init() {
-    day = 4;
-    scene = 2;
-    nbScene = 2;
+    day = 1;
+    scene = 1;
+    nbScene = 1;
     document.getElementById("day").innerHTML = "Jour " + day;
     chooseRoom('Parking')
 
@@ -24,6 +25,8 @@ function init() {
             advance();
         }
     });
+
+    toggleFinalChoice(false)
 }
 
 /**
@@ -33,10 +36,10 @@ function init() {
 function toggleButton(state){
     if (state == true) {
         activeDialogues = false;
-        //document.getElementById("game").style.pointer = "default";
+        document.getElementById("game").style.cursor = "default";
     } else {
         activeDialogues = true;
-        //document.getElementById("game").style.pointer = "pointer";
+        document.getElementById("game").style.cursor = "pointer";
     }
 
     document.getElementById("parking").disabled = !state;
@@ -191,7 +194,8 @@ function resolution() {
     } else if (indices < 8) {
         scene = 2;
     } else {
-        scene = 1;
+        toggleFinalChoice(true);
+        finalChoice();
     }
 
     // recoit les différents dialogues de la scene dans l'ordre
@@ -204,6 +208,19 @@ function resolution() {
     if (res.length > 0) {
         listDialogues = res;
         changeDialogue();
+    }
+}
+
+function toggleFinalChoice(state) {
+    document.getElementById("chooseDenounce").hidden = !state;
+    document.getElementById("chooseSilence").hidden = !state;
+}
+
+function finalChoice(choice) {
+    if (choice == "chooseDenounce") {
+        scene = 1;
+    } else {
+        scene = 4;
     }
 }
 
