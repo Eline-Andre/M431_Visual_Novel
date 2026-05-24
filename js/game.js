@@ -13,9 +13,10 @@ let choice;
  * initalisation du jeu
  */
 function init() {
-    day = 1;
+    day = 5;
     scene = 1;
     nbScene = 1;
+    indices = 9;
     document.getElementById("day").innerHTML = "Jour " + day;
     chooseRoom('Parking')
 
@@ -25,8 +26,6 @@ function init() {
             advance();
         }
     });
-
-    toggleFinalChoice(false)
 }
 
 /**
@@ -58,6 +57,11 @@ function toggleButton(state){
     document.getElementById("restaurant").disabled = !state;
 }
 
+function toggleFinalChoice(state) {
+    document.getElementById("chooseDenounce").hidden = !state;
+    document.getElementById("chooseSilence").hidden = !state;
+}
+
 /**
  * @param {On choisit la chambre} room 
  */
@@ -65,6 +69,7 @@ function chooseRoom(room) {
     const res3 = [];
 
     toggleButton(false);
+    toggleFinalChoice(false);
 
     dialogue = 0;
 
@@ -211,12 +216,8 @@ function resolution() {
     }
 }
 
-function toggleFinalChoice(state) {
-    document.getElementById("chooseDenounce").hidden = !state;
-    document.getElementById("chooseSilence").hidden = !state;
-}
-
 function finalChoice(choice) {
+    toggleFinalChoice(false);
     if (choice == "chooseDenounce") {
         scene = 1;
     } else {
