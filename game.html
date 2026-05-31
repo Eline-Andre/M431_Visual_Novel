@@ -7,12 +7,14 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body onload="init()">
+
   <div id="game" onclick="changeDialogue()">
     <div id="background"></div>
 
     <div id="menu">
       <div><h2 id="day"></h2></div>
 
+      <div id="deplacements">
       <div id="house">
         <button id="parking" class="room" onclick="chooseRoom('Parking')">Parking</button>
         <button id="entree" class="room" onclick="chooseRoom('Entrée maison')">Entrée maison</button>
@@ -33,6 +35,8 @@
       </div>
     </div>
 
+    </div>
+
     <img id="sprite" src="" alt="">
 
     <div id="choose">
@@ -45,7 +49,13 @@
       <div id="text"></div>
     </div>
 
+      <div id="end-screen">
+      <h1>Merci d'avoir joué !</h1>
+      <h3>de Eline, Lena & Nhi</h3>
   </div>
+
+  </div>
+
 
   <script src="js/dialogues.js"></script>
   <script src="js/game.js"></script>

@@ -8,12 +8,26 @@ let activeDialogues = false;
 let defaultText =  "Il n'y a personne ici...";
 let indices = 0;
 let choice;
+let activeMusic = null;
+
+const roomBackgrounds = {
+  'Parking': 'img/backgrounds/parking.png',
+  'Entrée maison': 'img/backgrounds/entree_maison.png',
+  'Hall': 'img/backgrounds/hall.png',
+  'Couloir': 'img/backgrounds/couloir.jpg',
+  'Salon': 'img/backgrounds/salon.jpg',
+  'Cuisine': 'img/backgrounds/cuisine.jpg',
+  'Chambre 1': 'img/backgrounds/chambre1.png',
+  'Chambre 2': 'img/backgrounds/chambre2.png',
+  'Chambre 3': 'img/backgrounds/chambre3.png',
+  'Terrasse': 'img/backgrounds/terrasse.jpg',
+};
 
 /**
  * initalisation du jeu
  */
 function init() {
-    day = 5;
+    day = 6;
     scene = 1;
     nbScene = 1;
     indices = 9;
@@ -23,7 +37,7 @@ function init() {
     document.addEventListener('keydown', (e) => {
         if (e.key === ' ') {
             e.preventDefault(); // ça empêche les actions par défaut quand on tape sur une touche (scroll, etc.)
-            advance();
+            changeDialogue();
         }
     });
 }
@@ -100,7 +114,13 @@ function chooseRoom(room) {
         changeDialogue();
     } else {
         document.getElementById("text").innerHTML = defaultText;
+        document.getElementById("speaker").innerHTML = "";
+        document.getElementById("sprite").style.display = "none";
         toggleButton(true);
+        
+        if (roomBackgrounds[room]) {
+            document.getElementById("background").style.backgroundImage = "url(" + roomBackgrounds[room] + ")";
+        }
     }
 
     console.log("scene", scene);
@@ -131,13 +151,47 @@ function checkPlaceVisibility() {
  * Aller au prochain dialogue, et désactiver les dialogues déjà eu
  */
 function changeDialogue() { 
+    if (document.getElementById("chooseDenounce").hidden == false) return ""; // pour pas que le joueur puisse avancer dans les dialogues quand y'a le choix final (sinon bug...)
+
     if (activeDialogues && dialogue < listDialogues.length) {   
         listDialogues[dialogue].visited = true;
+        
         if (listDialogues[dialogue].indice == true) {
             indices++
             console.log(indices)
         } 
-        document.getElementById("text").innerHTML = listDialogues[dialogue++].text;
+        document.getElementById("text").innerHTML = listDialogues[dialogue].text;
+
+        document.getElementById("speaker").innerHTML = listDialogues[dialogue].speaker;
+        
+        //affiche backgroud
+        if (listDialogues[dialogue].background) {
+            document.getElementById("background").style.backgroundImage = "url(" + listDialogues[dialogue].background + ")";
+        }  
+
+        //lance musique
+        if (activeMusic && activeMusic.paused) {
+            activeMusic.play();
+        }
+
+        if (listDialogues[dialogue].music) {
+            if (activeMusic) {
+                activeMusic.pause();
+            }
+            activeMusic = new Audio("audio/" + listDialogues[dialogue].music);
+            activeMusic.loop = true;
+            activeMusic.play();
+        }
+
+        //affiche sprite perso
+        if (listDialogues[dialogue].sprite) {
+            document.getElementById("sprite").src = listDialogues[dialogue].sprite;
+            document.getElementById("sprite").style.display = "block"; // affiche le sprite car sinon il est pas défaut en none
+        } else {
+            document.getElementById("sprite").style.display = "none"; // si pas de sprite --> caché
+        }
+
+        dialogue++;
         testNewScene ();
     }
 }
@@ -159,6 +213,9 @@ function testNewScene () {
                 resolution();
             } else if (day == 8) {
                 theEnd();
+            } else if (day >= 9) {
+                showEndScreen();
+                toggleButton(false);
             } else {
                 toggleButton(true);
             }
@@ -200,7 +257,6 @@ function resolution() {
         scene = 2;
     } else {
         toggleFinalChoice(true);
-        finalChoice();
     }
 
     // recoit les différents dialogues de la scene dans l'ordre
@@ -223,6 +279,17 @@ function finalChoice(choice) {
     } else {
         scene = 4;
     }
+
+    const res = dialogues.filter((d) => {
+        return (d.day == day && d.scene == scene);
+    });
+
+    dialogue = 0;
+
+    if (res.length > 0) {
+        listDialogues = res;
+        changeDialogue();
+    }
 }
 
 function theEnd() {
@@ -237,4 +304,8 @@ function theEnd() {
         listDialogues = res;
         changeDialogue();
     }
+}
+
+function showEndScreen() {
+    document.getElementById("end-screen").style.display = "flex";
 }
