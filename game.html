@@ -6,7 +6,49 @@
   <title>Visual Novel</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body onload="init()">
+<body onload="showAccueilScreen()">
+
+  <div id="accueil">
+    <div id="accueil-content">
+      <h1 id="title-accueil">M431 - Visual Novel (2026)</h1>
+      <h3 id="subtitle-accueil">Projet scolaire par Eline, Lena & Nhi</h3>
+      <button id ="play-button" onclick="init()">Jouer</button>
+      <button id ="play-button" onclick="showInformations()">Informations</button>
+      <button id ="play-button" onclick="showCredits()">Crédits</button>
+    </div>
+  </div>
+
+  <div id="informations">
+    <h2>Informations</h2>
+    <p>Visual Novel - Projet scolaire pour le cours M431 (Avril-Juin 2026)</p>
+    <p> Un Visual Novel est un type de jeu vidéo narratif, originaire du Japon et particulièrement populaire en Asie de l'Est. 
+      Le joueur interagit avec les personnages à travers des dialogues et des choix qui influencent l'histoire.
+      Le jeu est aussi accompagné d'illustrations et de musiques. Selon les décisions prises, plusieurs fins sont possibles.</p>
+    <p>Toutes les trois, nous avions déjà joué à plusieurs Visual Novels (comme par exemple Dangaronpa, Ace Attorney, etc.), ce qui nous a donné envie de nous lancer dans le développement de ce type de jeu pour notre projet scolaire.</p>
+    <p>Eline, Lena & Nhi</p>
+    <button id ="play-button" onclick="showAccueilScreen()">Retour</button>
+  </div>
+
+  <div id="credits">
+    <h2>Crédits</h2>
+    <p>Développé par Eline, Lena & Nhi (Avril-Juin 2026)</p>
+    <h3>Musiques</h3>
+    <ul>
+      <li>My homie, P5</li>
+      <li>New year's visit, P5</li>
+      <li>Your affection, P4</li>
+      <li>King queen and slave, P4</li>
+      <li>Electronics store, P4</li>
+      <li>Keep your faith, P5</li>
+    </ul>
+    <h3>Graphismes</h3>
+    <ul>
+      <li>Personnages : Lena</li>
+      <li>Backgrounds : Internet</li>
+    </ul>
+
+    <button id ="play-button" onclick="showAccueilScreen()">Retour</button>
+  </div>
 
   <div id="game" onclick="changeDialogue()">
     <div id="background"></div>
@@ -16,16 +58,15 @@
 
       <div id="deplacements">
       <div id="house">
-        <button id="parking" class="room" onclick="chooseRoom('Parking')">Parking</button>
-        <button id="entree" class="room" onclick="chooseRoom('Entrée maison')">Entrée maison</button>
+        <button id="entree" class="room" onclick="chooseRoom('Entrée')">Entrée</button>
         <button id="hall" class="room" onclick="chooseRoom('Hall')">Hall</button> 
-        <button id="couloir" class="room" onclick="chooseRoom('Couloir')">Couloir</button>
         <button id="salon" class="room" onclick="chooseRoom('Salon')">Salon</button>
         <button id="cuisine" class="room" onclick="chooseRoom('Cuisine')">Cuisine</button>
+        <button id="terrasse" class="room" onclick="chooseRoom('Terrasse')">Terrasse</button>
+        <button id="couloir" class="room" onclick="chooseRoom('Couloir')">Couloir</button>
         <button id="chambre1" class="room" onclick="chooseRoom('Chambre 1')">Chambre 1</button>
         <button id="chambre2" class="room" onclick="chooseRoom('Chambre 2')">Chambre 2</button>
         <button id="chambre3" class="room" onclick="chooseRoom('Chambre 3')">Chambre 3</button>
-        <button id="terrasse" class="room" onclick="chooseRoom('Terrasse')">Terrasse</button>
       </div>
 
       <div id="town">
@@ -49,10 +90,10 @@
       <div id="text"></div>
     </div>
 
-      <div id="end-screen">
+    <div id="end-screen">
       <h1>Merci d'avoir joué !</h1>
       <h3>de Eline, Lena & Nhi</h3>
-  </div>
+    </div>
 
   </div>
 

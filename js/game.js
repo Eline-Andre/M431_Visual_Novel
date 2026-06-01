@@ -11,8 +11,7 @@ let choice;
 let activeMusic = null;
 
 const roomBackgrounds = {
-  'Parking': 'img/backgrounds/parking.png',
-  'Entrée maison': 'img/backgrounds/entree_maison.png',
+  'Entrée': 'img/backgrounds/entree_maison.png',
   'Hall': 'img/backgrounds/hall.png',
   'Couloir': 'img/backgrounds/couloir.jpg',
   'Salon': 'img/backgrounds/salon.jpg',
@@ -27,12 +26,15 @@ const roomBackgrounds = {
  * initalisation du jeu
  */
 function init() {
-    day = 6;
+    day = 1;
     scene = 1;
     nbScene = 1;
     indices = 9;
     document.getElementById("day").innerHTML = "Jour " + day;
-    chooseRoom('Parking')
+    chooseRoom('Entrée');
+    
+    document.getElementById("accueil").style.display = "none";
+    document.getElementById("game").style.display = "block";
 
     document.addEventListener('keydown', (e) => {
         if (e.key === ' ') {
@@ -40,6 +42,7 @@ function init() {
             changeDialogue();
         }
     });
+
 }
 
 /**
@@ -55,7 +58,6 @@ function toggleButton(state){
         document.getElementById("game").style.cursor = "pointer";
     }
 
-    document.getElementById("parking").disabled = !state;
     document.getElementById("entree").disabled = !state;
     document.getElementById("hall").disabled = !state;
     document.getElementById("couloir").disabled = !state;
@@ -186,7 +188,7 @@ function changeDialogue() {
         //affiche sprite perso
         if (listDialogues[dialogue].sprite) {
             document.getElementById("sprite").src = listDialogues[dialogue].sprite;
-            document.getElementById("sprite").style.display = "block"; // affiche le sprite car sinon il est pas défaut en none
+            document.getElementById("sprite").style.display = "block"; // affiche le sprite car sinon il est par défaut en none
         } else {
             document.getElementById("sprite").style.display = "none"; // si pas de sprite --> caché
         }
@@ -308,4 +310,27 @@ function theEnd() {
 
 function showEndScreen() {
     document.getElementById("end-screen").style.display = "flex";
+    activeMusic.pause();
+    activeMusic = new Audio("audio/accueil.mp3");
+    activeMusic.loop = false;
+    activeMusic.play();
+
+}
+
+function showAccueilScreen() {
+    document.getElementById("game").style.display = "none";
+    document.getElementById("informations").style.display = "none";
+    document.getElementById("credits").style.display = "none";
+    document.getElementById("accueil").style.display = "flex";
+
+}
+
+function showCredits() {
+    document.getElementById("accueil").style.display = "none";
+    document.getElementById("credits").style.display = "flex";
+}
+
+function showInformations() {
+    document.getElementById("accueil").style.display = "none";
+    document.getElementById("informations").style.display = "flex";
 }
