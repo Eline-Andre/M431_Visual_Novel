@@ -10,10 +10,14 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  font-family: 'tahoma', sans-serif;
 }
 
 #day {
   color: #fff;
+  font-size: 24px;
+  font-family: 'roboto', sans-serif;
+
 }
 
 #town {
@@ -56,14 +60,18 @@ body {
   height: 150px;
   background: rgba(10, 10, 30, 0.90);
   padding: 20px;
+  margin: 20px;
+  border-radius: 20px;
+  border: 1px solid rgba(236, 177, 223, 0.842);
+
 }
 
 #speaker {
-  font-size: 18px;
+  font-size: 22px;
   font-weight: bold;
   color: #ffffff;
-  margin-bottom: 13px;
-  
+  margin-bottom: 14px;
+  font-family: 'roboto', sans-serif;
 }
 
 #text {
@@ -114,6 +122,9 @@ body {
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.2);
   cursor: pointer;
+  font-size: 18px;
+  font-family: 'tahoma', sans-serif;
+
 }
 
 #play-button:hover {
@@ -167,6 +178,8 @@ body {
   border-radius: 10px;
   cursor: pointer;
   text-align: center;
+  font-family: 'tahoma', sans-serif;
+  font-size: 13px;
 }
 
 .room:hover {

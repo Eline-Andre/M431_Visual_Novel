@@ -11,22 +11,25 @@ let choice;
 let activeMusic = null;
 
 const roomBackgrounds = {
-  'Entrée': 'img/backgrounds/entree_maison.png',
-  'Hall': 'img/backgrounds/hall.png',
-  'Couloir': 'img/backgrounds/couloir.jpg',
-  'Salon': 'img/backgrounds/salon.jpg',
-  'Cuisine': 'img/backgrounds/cuisine.jpg',
-  'Chambre 1': 'img/backgrounds/chambre1.png',
-  'Chambre 2': 'img/backgrounds/chambre2.png',
-  'Chambre 3': 'img/backgrounds/chambre3.png',
-  'Terrasse': 'img/backgrounds/terrasse.jpg',
+    'Entrée': 'img/backgrounds/entree_maison.png',
+    'Hall': 'img/backgrounds/hall.png',
+    'Couloir': 'img/backgrounds/couloir.png',
+    'Salon': 'img/backgrounds/salon.png',
+    'Cuisine': 'img/backgrounds/cuisine.png',
+    'Chambre 1': 'img/backgrounds/chambre1.png',
+    'Chambre 2': 'img/backgrounds/chambre2.png',
+    'Chambre 3': 'img/backgrounds/chambre3.png',
+    'Terrasse': 'img/backgrounds/terrasse.png',
+    'Magasin 1': 'img/backgrounds/magasin1.png',
+    'Magasin 2': 'img/backgrounds/magasin2.png',
+    'Restaurant': 'img/backgrounds/restaurant.png',
 };
 
 /**
  * initalisation du jeu
  */
 function init() {
-    day = 1;
+    day = 2;
     scene = 1;
     nbScene = 1;
     indices = 9;
