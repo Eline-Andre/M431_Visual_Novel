@@ -16,7 +16,6 @@ body {
 #day {
   color: #fff;
   font-size: 24px;
-  font-family: 'roboto', sans-serif;
 
 }
 
@@ -71,7 +70,7 @@ body {
   font-weight: bold;
   color: #ffffff;
   margin-bottom: 14px;
-  font-family: 'roboto', sans-serif;
+  font-family: 'courier new', monospace;
 }
 
 #text {
@@ -88,6 +87,7 @@ body {
   background-color: rgba(10, 10, 30, 0.80);
   padding: 10px;
   border-radius: 10px;
+  font-family: 'courier new', monospace;
 }
 
 #accueil {
@@ -108,27 +108,31 @@ body {
   display: flex;
   flex-direction: column;
   left: 50px;
-  top: 140px;
+  top: 160px;
+  font-family: 'Courier New', monospace;
+}
+
+#title-accueil {
+  font-size: 28px;
 }
 
 /* bouton de l'accueil */
 #play-button {
   display: flex;
   padding: 10px 20px;
-  margin: 20px 0 0 20px;
-  width: 200px;
-  border-radius: 10px;
+  width: 300px;
+  margin-top: 20px;
   background: rgba(10, 10, 30, 0.80);
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.2);
   cursor: pointer;
   font-size: 18px;
-  font-family: 'tahoma', sans-serif;
-
+  font-family: 'Courier New', monospace;
 }
 
 #play-button:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(88, 18, 18, 0.8);
+  font-weight: bold;
 }
 
 /* page d'informations */
@@ -140,12 +144,13 @@ body {
   background: rgba(10, 10, 30, 0.95);
   justify-content: center;
   align-items: center;
-  color: #fff;
-  font-size: 24px;
   flex-direction: column;
-  gap: 15px;
+  gap: 18px;
   padding: 150px;
   text-align: justify;
+  font-family: 'courier new', monospace;
+  color: #fff;
+  font-size: 20px;
 }
 
 /* page de crédits */
@@ -157,10 +162,11 @@ body {
   background: rgba(10, 10, 30, 0.95);
   justify-content: center;
   align-items: center;
-  color: #fff;
-  font-size: 24px;
   flex-direction: column;
   gap: 15px;
+  font-family: 'Courier New', monospace;
+  color: #fff;
+  font-size: 24px;
   
 }
 
@@ -178,7 +184,7 @@ body {
   border-radius: 10px;
   cursor: pointer;
   text-align: center;
-  font-family: 'tahoma', sans-serif;
+  font-family: 'courier new', monospace;
   font-size: 13px;
 }
 

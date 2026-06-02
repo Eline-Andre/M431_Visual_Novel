@@ -317,7 +317,6 @@ function showEndScreen() {
     activeMusic = new Audio("audio/accueil.mp3");
     activeMusic.loop = false;
     activeMusic.play();
-
 }
 
 function showAccueilScreen() {
@@ -325,7 +324,6 @@ function showAccueilScreen() {
     document.getElementById("informations").style.display = "none";
     document.getElementById("credits").style.display = "none";
     document.getElementById("accueil").style.display = "flex";
-
 }
 
 function showCredits() {
