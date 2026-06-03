@@ -29,7 +29,7 @@ const roomBackgrounds = {
  * initalisation du jeu
  */
 function init() {
-    day = 2;
+    day = 1;
     scene = 1;
     nbScene = 1;
     indices = 9;
