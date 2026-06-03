@@ -32,7 +32,7 @@ function init() {
     day = 1;
     scene = 1;
     nbScene = 1;
-    indices = 9;
+    indices = 0;
     document.getElementById("day").innerHTML = "Jour " + day;
     chooseRoom('Entrée');
     
