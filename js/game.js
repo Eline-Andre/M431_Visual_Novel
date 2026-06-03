@@ -311,6 +311,7 @@ function theEnd() {
     }
 }
 
+//Afficher écran de fin
 function showEndScreen() {
     document.getElementById("end-screen").style.display = "flex";
     activeMusic.pause();
@@ -319,6 +320,7 @@ function showEndScreen() {
     activeMusic.play();
 }
 
+//Afficher écran d'accueil
 function showAccueilScreen() {
     document.getElementById("game").style.display = "none";
     document.getElementById("informations").style.display = "none";
@@ -326,11 +328,13 @@ function showAccueilScreen() {
     document.getElementById("accueil").style.display = "flex";
 }
 
+//Afficher écran des crédits
 function showCredits() {
     document.getElementById("accueil").style.display = "none";
     document.getElementById("credits").style.display = "flex";
 }
 
+//Afficher écran des informations
 function showInformations() {
     document.getElementById("accueil").style.display = "none";
     document.getElementById("informations").style.display = "flex";
